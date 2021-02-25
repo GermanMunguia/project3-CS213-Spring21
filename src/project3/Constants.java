@@ -1,4 +1,4 @@
-package sample;
+package project3;
 
 /**
  Contains constants which are referenced throughout other classes.

@@ -1,4 +1,4 @@
-package sample;
+package project3;
 
 /**
  This class defines the abstract data type Parttime, which encapsulates the data fields and methods of a part time

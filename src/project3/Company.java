@@ -1,4 +1,4 @@
-package sample;
+package project3;
 
 /**
  The Company class defines the abstract Company type which contains the array consisting of Employee class objects.
