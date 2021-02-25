@@ -1,3 +1,5 @@
+package sample;
+
 /**
  The Company class defines the abstract Company type which contains the array consisting of Employee class objects.
  Contains constructors to generate Company objects with an empty array to hold Employee class objects.
