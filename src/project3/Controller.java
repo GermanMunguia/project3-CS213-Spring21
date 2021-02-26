@@ -74,7 +74,6 @@ public class Controller {
         hoursWorkedField.setDisable(false);
     }
 
-
     public void disableManagementRoles(){
         Manager_Button.setDisable(true);
         DepartmentHead_Button.setDisable(true);
