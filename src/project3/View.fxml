@@ -1,30 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<GridPane alignment="center" hgap="10" prefHeight="341.0" prefWidth="563.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="project3.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="305.0" prefWidth="527.0">
+      <HBox prefHeight="376.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TabPane prefHeight="305.0" prefWidth="317.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="400.0" prefWidth="426.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Home">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="391.0">
+                           <children>
+                              <TextField fx:id="fullNameField" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="243.0" promptText="Full Name" />
+                              <DatePicker fx:id="dateHiredField" layoutX="14.0" layoutY="50.0" promptText="Date Hired" />
+                              <VBox layoutX="14.0" layoutY="84.0" prefHeight="131.0" prefWidth="305.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="255.0" text="Department" />
+                                    <HBox prefHeight="20.0" prefWidth="255.0">
+                                       <children>
+                                          <RadioButton fx:id="CS_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="44.0" text="CS" />
+                                          <RadioButton fx:id="ECE_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="51.0" text="ECE" />
+                                          <RadioButton fx:id="IT_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="IT" />
+                                       </children>
+                                    </HBox>
+                                    <Label alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="255.0" text="Employee Type" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="305.0">
+                                       <children>
+                                          <RadioButton fx:id="Fulltime_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="78.0" text="Full time" />
+                                          <RadioButton fx:id="Parttime_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="77.0" text="Part time" />
+                                          <RadioButton fx:id="Management_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="100.0" text="Management" />
+                                       </children>
+                                    </HBox>
+                                    <Label alignment="BOTTOM_LEFT" prefHeight="23.0" prefWidth="255.0" text="Management Role" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="305.0">
+                                       <children>
+                                          <RadioButton fx:id="Manager_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="78.0" text="Manager" />
+                                          <RadioButton fx:id="DepartmentHead_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="126.0" text="Department Head" />
+                                          <RadioButton fx:id="Director_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Director" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <TextField fx:id="annualSalaryField" layoutX="14.0" layoutY="227.0" prefHeight="25.0" prefWidth="255.0" promptText="Annual Salary" />
+                              <TextField fx:id="hourlyRateField" layoutX="14.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hourly Rate" />
+                              <TextField fx:id="hoursWorkedField" layoutX="145.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hours Worked" />
+                              <HBox layoutX="14.0" layoutY="300.0" prefHeight="31.0" prefWidth="361.0" spacing="10.0">
+                                 <children>
+                                    <Button fx:id="add_Button" mnemonicParsing="false" text="Add" />
+                                    <Button fx:id="remove_Button" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Remove" />
+                                    <Button fx:id="calculatePayment_Button" mnemonicParsing="false" text="Calculate Payment" />
+                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Print Options">
+                                      <items>
+                                        <MenuItem fx:id="print_Button" mnemonicParsing="false" text="Print" />
+                                        <MenuItem fx:id="printByDate_Button" mnemonicParsing="false" text="Print by Date Hired" />
+                                        <MenuItem fx:id="printByDepartment_Button" mnemonicParsing="false" text="Print by Department" />
+                                      </items>
+                                    </MenuButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
                   </content>
                 </Tab>
                 <Tab text="Import/Export">
@@ -34,8 +71,8 @@
                 </Tab>
               </tabs>
             </TabPane>
-            <TextArea prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="textOutput_Screen" editable="false" prefHeight="400.0" prefWidth="245.0" />
          </children>
       </HBox>
    </children>
-</GridPane>
+</AnchorPane>

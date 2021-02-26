@@ -1,5 +1,10 @@
 package project3;
 
+/**
+
+ @author German Munguia, Sukhjit Singh
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,8 +17,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Company Database Application");
+        primaryStage.setScene(new Scene(root, 600, 376));
         primaryStage.show();
     }
 
