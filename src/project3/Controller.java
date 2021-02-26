@@ -71,6 +71,7 @@ public class Controller {
         disableManagementRoles();
         hourlyRateField.setDisable(false);
         annualSalaryField.setDisable(true);
+        hoursWorkedField.setDisable(false);
     }
 
 
@@ -85,6 +86,7 @@ public class Controller {
     public void disablePartime() {
         hourlyRateField.setDisable(true);
         annualSalaryField.setDisable(false);
+        hoursWorkedField.setDisable(true);
 
     }
 
