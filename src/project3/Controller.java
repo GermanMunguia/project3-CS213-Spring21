@@ -54,8 +54,7 @@ public class Controller {
     private MenuItem printByDepartment_Button;
 
 
-
-    public void fulltimeClick(ActionEvent actionEvent) {
+public void fulltimeClick(ActionEvent actionEvent) {
         disableManagementRoles();
         disablePartime();
     }
