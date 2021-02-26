@@ -54,8 +54,7 @@ public class Controller {
     private MenuItem printByDepartment_Button;
 
 
-
-    public void fulltimeClick(ActionEvent actionEvent) {
+public void fulltimeClick(ActionEvent actionEvent) {
         disableManagementRoles();
         disablePartime();
     }
@@ -71,10 +70,8 @@ public class Controller {
         disableManagementRoles();
         hourlyRateField.setDisable(false);
         annualSalaryField.setDisable(true);
+        hoursWorkedField.setDisable(false);
     }
-
-
-
 
     public void disableManagementRoles(){
         Manager_Button.setDisable(true);
@@ -85,6 +82,7 @@ public class Controller {
     public void disablePartime() {
         hourlyRateField.setDisable(true);
         annualSalaryField.setDisable(false);
+        hoursWorkedField.setDisable(true);
 
     }
 
