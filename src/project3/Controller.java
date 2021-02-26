@@ -1,5 +1,6 @@
 package project3;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -54,5 +55,37 @@ public class Controller {
 
 
 
+    public void fulltimeClick(ActionEvent actionEvent) {
+        disableManagementRoles();
+        disablePartime();
+    }
+
+    public void managementClick(ActionEvent actionEvent) {
+            Manager_Button.setDisable(false);
+            DepartmentHead_Button.setDisable(false);
+            Director_Button.setDisable(false);
+            disablePartime();
+    }
+
+    public void ParttimeClick(ActionEvent actionEvent) {
+        disableManagementRoles();
+        hourlyRateField.setDisable(false);
+        annualSalaryField.setDisable(true);
+    }
+
+
+
+
+    public void disableManagementRoles(){
+        Manager_Button.setDisable(true);
+        DepartmentHead_Button.setDisable(true);
+        Director_Button.setDisable(true);
+    }
+
+    public void disablePartime() {
+        hourlyRateField.setDisable(true);
+        annualSalaryField.setDisable(false);
+
+    }
 
 }

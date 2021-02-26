@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project3.Controller">
    <children>
       <HBox prefHeight="376.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,25 +32,34 @@
                                     <Label prefHeight="25.0" prefWidth="255.0" text="Department" />
                                     <HBox prefHeight="20.0" prefWidth="255.0">
                                        <children>
-                                          <RadioButton fx:id="CS_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="44.0" text="CS" />
-                                          <RadioButton fx:id="ECE_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="51.0" text="ECE" />
-                                          <RadioButton fx:id="IT_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="IT" />
+                                          <RadioButton fx:id="CS_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="44.0" text="CS">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="Department" />
+                                             </toggleGroup></RadioButton>
+                                          <RadioButton fx:id="ECE_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="51.0" text="ECE" toggleGroup="$Department" />
+                                          <RadioButton fx:id="IT_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="IT" toggleGroup="$Department" />
                                        </children>
                                     </HBox>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="255.0" text="Employee Type" />
                                     <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="305.0">
                                        <children>
-                                          <RadioButton fx:id="Fulltime_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="78.0" text="Full time" />
-                                          <RadioButton fx:id="Parttime_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="77.0" text="Part time" />
-                                          <RadioButton fx:id="Management_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="100.0" text="Management" />
+                                          <RadioButton fx:id="Fulltime_Button" mnemonicParsing="false" onAction="#fulltimeClick" prefHeight="17.0" prefWidth="78.0" text="Full time">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="EmployeeType" />
+                                             </toggleGroup></RadioButton>
+                                          <RadioButton fx:id="Parttime_Button" mnemonicParsing="false" onAction="#ParttimeClick" prefHeight="17.0" prefWidth="77.0" text="Part time" toggleGroup="$EmployeeType" />
+                                          <RadioButton fx:id="Management_Button" mnemonicParsing="false" onAction="#managementClick" prefHeight="17.0" prefWidth="100.0" text="Management" toggleGroup="$EmployeeType" />
                                        </children>
                                     </HBox>
                                     <Label alignment="BOTTOM_LEFT" prefHeight="23.0" prefWidth="255.0" text="Management Role" />
                                     <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="305.0">
                                        <children>
-                                          <RadioButton fx:id="Manager_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="78.0" text="Manager" />
-                                          <RadioButton fx:id="DepartmentHead_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="126.0" text="Department Head" />
-                                          <RadioButton fx:id="Director_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Director" />
+                                          <RadioButton fx:id="Manager_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="78.0" text="Manager">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="Role" />
+                                             </toggleGroup></RadioButton>
+                                          <RadioButton fx:id="DepartmentHead_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="126.0" text="Department Head" toggleGroup="$Role" />
+                                          <RadioButton fx:id="Director_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Director" toggleGroup="$Role" />
                                        </children>
                                     </HBox>
                                  </children>
