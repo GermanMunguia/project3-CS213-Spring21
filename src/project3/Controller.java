@@ -368,7 +368,7 @@ public class Controller {
         fileChooser.setTitle("Choose Import File");
         File selectedFile = fileChooser.showOpenDialog(null);
 
-        //If the selection was cancelled or nothing was chosen return.
+        //If the selection was cancelled or nothing was chosen then return.
         if(selectedFile == null) {
             textOutput_Screen.appendText("No file was imported.\n");
             return;
@@ -407,17 +407,37 @@ public class Controller {
                     company.add(employee);
                 }
             }
+            fr.close(); //close the file
 
         }
         catch(Exception ex){
             return;
         }
-
-
     }
 
     public void exportClick(ActionEvent actionEvent) {
 
+        //allow for the location of the exported file be chosen.
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export File");
+        File selectedFile = fileChooser.showSaveDialog(null);
+
+        try{
+            //use printwriter to write the toString values of each employee.
+            PrintWriter pw = new PrintWriter(selectedFile);
+            String[] employees = company.employeeList();
+            for(int i = 0; i < employees.length; i++) {
+                pw.println(employees[i].toString());
+            }
+            pw.close(); //close the file
+        }
+        catch(Exception ex){
+            textOutput_Screen.appendText("The file was not exported.\n");
+            return;
+        }
+
+        //Show the file was exported successfully.
+        textOutput_Screen.appendText("File Exported.\n");
     }
 
 }
