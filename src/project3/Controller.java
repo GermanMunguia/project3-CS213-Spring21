@@ -3,10 +3,15 @@ package project3;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import javax.swing.*;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
+import java.util.StringTokenizer;
 
 public class Controller {
     //Declare the input fields
@@ -62,6 +67,9 @@ public class Controller {
     private MenuItem printByDate_Button;
     @FXML
     private MenuItem printByDepartment_Button;
+
+    @FXML
+    private HBox Import_Export;
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
@@ -354,4 +362,62 @@ public class Controller {
         company.sortEmployeeDepartment();
         print(printMsg);
     }
+
+    public void importClick(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Import File");
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        //If the selection was cancelled or nothing was chosen return.
+        if(selectedFile == null) {
+            textOutput_Screen.appendText("No file was imported.\n");
+            return;
+        }
+
+        //file has been imported, assume date is correct and add the employees.
+        textOutput_Screen.appendText("File Imported.\n");
+        try{
+            FileReader fr = new FileReader(selectedFile.getPath());
+            BufferedReader br = new BufferedReader(fr);
+
+            String input;
+            //loop until end of file.
+            while((input = br.readLine()) != null) {
+
+                //create string tokenizer with the input and use comma as a delimiter.
+                StringTokenizer in = new StringTokenizer(input, ",");
+                //the first token will contain the employee type.
+                String firstToken = in.nextToken();
+
+                //add Part time employee
+                if(firstToken.equals("P")) {
+                    Employee employee = new Parttime(in.nextToken(), in.nextToken(), in.nextToken(), in.nextToken(), "0");
+                    company.add(employee);
+                }
+
+                //add full time employee
+                else if(firstToken.equals("F")) {
+                    Employee employee = new Fulltime(in.nextToken(), in.nextToken(), in.nextToken(), in.nextToken());
+                    company.add(employee);
+                }
+
+                //add management employee
+                else if(firstToken.equals("M")) {
+                    Employee employee = new Management(in.nextToken(), in.nextToken(), in.nextToken(), in.nextToken(), in.nextToken());
+                    company.add(employee);
+                }
+            }
+
+        }
+        catch(Exception ex){
+            return;
+        }
+
+
+    }
+
+    public void exportClick(ActionEvent actionEvent) {
+
+    }
+
 }
