@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import javax.swing.*;
+import java.io.*;
 import java.time.format.DateTimeFormatter;
 
 public class Controller {
@@ -72,25 +74,25 @@ public class Controller {
                 if(!annualSalaryField.getText().equals("")) {
                     try {
                         if (Double.parseDouble(annualSalaryField.getText()) < 0) {
-                            textOutput_Screen.setText("Salary cannot be negative.");
+                            textOutput_Screen.appendText("Salary cannot be negative.\n");
                         }
                         else{
                             Fulltime fulltime = new Fulltime(fullNameField.getText(), department,
                                     (dateHiredField.getValue()).format(formatter), annualSalaryField.getText());
                             if(company.add(fulltime)){
-                                textOutput_Screen.setText("Employee added.");
+                                textOutput_Screen.appendText("Employee added.\n");
                             } else {
-                                textOutput_Screen.setText("Employee is already in the list.");
+                                textOutput_Screen.appendText("Employee is already in the list.\n");
                             }
                         }
                     }
                     //If the annualSalaryField is not a numerical value
                     catch (NumberFormatException ex){
-                        textOutput_Screen.setText("Salary must be a numerical value");
+                        textOutput_Screen.appendText("Salary must be a numerical value\n");
                     }
                 }
                 else{
-                    textOutput_Screen.setText("Enter a valid salary");
+                    textOutput_Screen.appendText("Enter a valid salary\n");
                 }
             }
             else if(Parttime_Button.isSelected()){
@@ -106,55 +108,55 @@ public class Controller {
                 if(!hourlyRateField.getText().equals("") && !workHours.equals("")) {
                     try {
                         if (Double.parseDouble(hourlyRateField.getText()) < 0) {
-                            textOutput_Screen.setText("Hourly Rate cannot be negative.");
+                            textOutput_Screen.appendText("Hourly Rate cannot be negative.\n");
                         }
                         else{
                             Parttime parttime = new Parttime(fullNameField.getText(), department,
                                     (dateHiredField.getValue()).format(formatter), hourlyRateField.getText(), workHours);
                             if(company.add(parttime)){
-                                textOutput_Screen.setText("Employee added.");
+                                textOutput_Screen.appendText("Employee added.\n");
                             } else {
-                                textOutput_Screen.setText("Employee is already in the list.");
+                                textOutput_Screen.appendText("Employee is already in the list.\n");
                             }
                         }
                     }
                     //If the annualSalaryField is not a numerical value
                     catch (NumberFormatException ex){
-                        textOutput_Screen.setText("Hourly Rate must be a numerical value");
+                        textOutput_Screen.appendText("Hourly Rate must be a numerical value\n");
                     }
                 }
                 else{
-                    textOutput_Screen.setText("Enter a valid salary");
+                    textOutput_Screen.appendText("Enter a valid salary\n");
                 }
             }
             else if(Management_Button.isSelected()){
                 if(!annualSalaryField.getText().equals("")) {
                     try {
                         if (Double.parseDouble(annualSalaryField.getText()) < 0) {
-                            textOutput_Screen.setText("Salary cannot be negative.");
+                            textOutput_Screen.appendText("Salary cannot be negative.\n");
                         }
                         else{
                             Management management = new Management(fullNameField.getText(), department,
                                     (dateHiredField.getValue()).format(formatter), annualSalaryField.getText(), assignManagementRole());
                             if(company.add(management)){
-                                textOutput_Screen.setText("Employee added.");
+                                textOutput_Screen.appendText("Employee added.\n");
                             } else {
-                                textOutput_Screen.setText("Employee is already in the list.");
+                                textOutput_Screen.appendText("Employee is already in the list.\n");
                             }
                         }
                     }
                     //If the annualSalaryField is not a numerical value
                     catch (NumberFormatException ex){
-                        textOutput_Screen.setText("Salary must be a numerical value");
+                        textOutput_Screen.appendText("Salary must be a numerical value\n");
                     }
                 }
                 else{
-                    textOutput_Screen.setText("Enter a valid salary");
+                    textOutput_Screen.appendText("Enter a valid salary\n");
                 }
             }
         }
         else{
-            textOutput_Screen.setText("Try again");
+            textOutput_Screen.appendText("Try again\n");
         }
     }
 
@@ -164,25 +166,25 @@ public class Controller {
             Employee employee = new Employee(fullNameField.getText(), department,
                     (dateHiredField.getValue()).format(formatter));
             if(company.remove(employee)){
-                textOutput_Screen.setText("Employee removed");
+                textOutput_Screen.appendText("Employee removed\n");
             }
             else{
-                textOutput_Screen.setText("Employee does not exist.");
+                textOutput_Screen.appendText("Employee does not exist.\n");
             }
 
         }
         else{
-            textOutput_Screen.setText("Try again");
+            textOutput_Screen.appendText("Try again\n");
         }
     }
 
     public void calculatePaymentClick(ActionEvent actionEvent){
         if(company.getNumEmployee() == 0){
-            textOutput_Screen.setText("Employee database is empty.");
+            textOutput_Screen.appendText("Employee database is empty.\n");
         }
         else {
             company.processPayments();
-            textOutput_Screen.setText("Calculation of employee payments is done.");
+            textOutput_Screen.appendText("Calculation of employee payments is done.\n");
         }
     }
 
@@ -192,27 +194,27 @@ public class Controller {
             if(Parttime_Button.isSelected()){
                 String workHours = "";
                 if(hoursWorkedField.getText().equals("")){
-                    textOutput_Screen.setText("Enter the amount of hours!");
+                    textOutput_Screen.appendText("Enter the amount of hours!\n");
                 }
                 else if(isValidWorkingHours()){
                     workHours = hoursWorkedField.getText();
                 }
 
                 if(company.setHours(new Parttime(fullNameField.getText(), department, (dateHiredField.getValue()).format(formatter), "0", workHours))) {
-                    textOutput_Screen.setText("Working hours set.");
+                    textOutput_Screen.appendText("Working hours set.\n");
                 }
                 else{
-                    textOutput_Screen.setText("Employee does not exist.");
+                    textOutput_Screen.appendText("Employee does not exist.\n");
                 }
 
             }
             else{
-                textOutput_Screen.setText("Invalid employee type");
+                textOutput_Screen.appendText("Invalid employee type\n");
             }
 
         }
         else{
-            textOutput_Screen.setText("Try again");
+            textOutput_Screen.appendText("Try again\n");
         }
     }
 
@@ -276,28 +278,28 @@ public class Controller {
 
     private Boolean employeeIsValid(){
         if(fullNameField.getText().equals("")){
-            textOutput_Screen.setText("Enter the first and last name!");
+            textOutput_Screen.appendText("Enter the first and last name!\n");
             return false;
         }
         else if(dateHiredField.getValue() == null) {
-            textOutput_Screen.setText("Select the date the employee was hired!");
+            textOutput_Screen.appendText("Select the date the employee was hired!\n");
             return false;
         }
         //If the date is out of bounds
         else if(!(new Date((dateHiredField.getValue()).format(formatter)).isValid())){
-            textOutput_Screen.setText((dateHiredField.getValue()).format(formatter) + " is not a valid date!");
+            textOutput_Screen.appendText((dateHiredField.getValue()).format(formatter) + " is not a valid date!\n");
             return false;
         }
         else if(!(CS_Button.isSelected() || ECE_Button.isSelected() || IT_Button.isSelected())){
-            textOutput_Screen.setText("Select a department!");
+            textOutput_Screen.appendText("Select a department!\n");
             return false;
         }
         else if(!(Fulltime_Button.isSelected() || Parttime_Button.isSelected() || Management_Button.isSelected())){
-            textOutput_Screen.setText("Select employee type!");
+            textOutput_Screen.appendText("Select employee type!\n");
             return false;
         }
         else if(Management_Button.isSelected() && !(Manager_Button.isSelected() || DepartmentHead_Button.isSelected() || Director_Button.isSelected())){
-            textOutput_Screen.setText("Select Management role!");
+            textOutput_Screen.appendText("Select Management role!\n");
             return false;
         }
         else{
@@ -308,18 +310,48 @@ public class Controller {
     private Boolean isValidWorkingHours(){
         try{
             if (Integer.parseInt(hoursWorkedField.getText()) < 0){
-                textOutput_Screen.setText("Working hours cannot be negative.");
+                textOutput_Screen.appendText("Working hours cannot be negative.\n");
                 return false;
             }
             else if (Integer.parseInt(hoursWorkedField.getText()) > Constants.MAXIMUM_HOURS){
-                textOutput_Screen.setText("Invalid Hours: over 100.");
+                textOutput_Screen.appendText("Invalid Hours: over 100.\n");
                 return false;
             }
             return true;
         }
         catch (NumberFormatException ex){
-            textOutput_Screen.setText("Hours worked must be a numerical value!");
+            textOutput_Screen.appendText("Hours worked must be a numerical value!\n");
             return false;
         }
+    }
+
+    public void print(String printMsg) {
+        if(company.getNumEmployee() == 0) {
+            textOutput_Screen.appendText("Employee database is empty.\n");
+            return;
+        }
+
+        textOutput_Screen.appendText(printMsg);
+        String[] employees = company.employeeList();
+        for(int i = 0; i < employees.length; i++) {
+            textOutput_Screen.appendText(employees[i] + "\n");
+        }
+    }
+
+    public void printClick(ActionEvent actionEvent) {
+        String printMsg = "--Printing earning statements for all employees--\n";
+        print(printMsg);
+    }
+
+    public void printByDateClick(ActionEvent actionEvent) {
+        String printMsg = "--Printing earning statements by date hired--\n";
+        company.sortEmployeeHiredDateAscending();
+        print(printMsg);
+    }
+
+    public void printByDepartmentClick(ActionEvent actionEvent) {
+        String printMsg = "--Printing earning statements by department--\n";
+        company.sortEmployeeDepartment();
+        print(printMsg);
     }
 }
