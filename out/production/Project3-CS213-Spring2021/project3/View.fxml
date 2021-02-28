@@ -2,8 +2,10 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project3.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project3.Controller">
    <children>
       <HBox prefHeight="373.0" prefWidth="1019.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-37.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -11,89 +13,219 @@
               <tabs>
                 <Tab text="Home">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="386.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="386.0" style="-fx-background-color: #001729;">
                            <children>
-                              <TextField fx:id="fullNameField" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="243.0" promptText="Full Name" />
-                              <DatePicker fx:id="dateHiredField" layoutX="14.0" layoutY="50.0" promptText="Date Hired" />
+                              <TextField fx:id="fullNameField" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="243.0" promptText="Full Name" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6;">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></TextField>
+                              <DatePicker fx:id="dateHiredField" layoutX="14.0" layoutY="50.0" promptText="Date Hired" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a);" />
                               <VBox layoutX="14.0" layoutY="84.0" prefHeight="131.0" prefWidth="305.0">
                                  <children>
-                                    <Label prefHeight="25.0" prefWidth="255.0" text="Department" />
+                                    <Label prefHeight="25.0" prefWidth="255.0" text="Department">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0" startX="0.06190476190476191" startY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.7799999713897705" green="0.007799999788403511" blue="0.007799999788403511" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="0.8815789222717285" green="0.5550682544708252" blue="0.06530214101076126" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill></Label>
                                     <HBox prefHeight="20.0" prefWidth="255.0">
                                        <children>
-                                          <RadioButton fx:id="CS_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="44.0" text="CS">
+                                          <RadioButton fx:id="CS_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="44.0" text="CS" textFill="WHITE">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="Department" />
-                                             </toggleGroup></RadioButton>
-                                          <RadioButton fx:id="ECE_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="51.0" text="ECE" toggleGroup="$Department" />
-                                          <RadioButton fx:id="IT_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="IT" toggleGroup="$Department" />
+                                             </toggleGroup>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
+                                          <RadioButton fx:id="ECE_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="51.0" text="ECE" textFill="WHITE" toggleGroup="$Department">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
+                                          <RadioButton fx:id="IT_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="39.0" text="IT" textFill="WHITE" toggleGroup="$Department">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
                                        </children>
                                     </HBox>
-                                    <Label alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="255.0" text="Employee Type" />
+                                    <Label alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="255.0" text="Employee Type">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0" startX="0.06190476190476191" startY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.7894737124443054" green="0.0036549707874655724" blue="0.0036549707874655724" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="0.007662835249042145">
+                                                   <color>
+                                                      <Color red="0.7894737124443054" green="0.0036549707874655724" blue="0.0036549707874655724" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="0.9965635738831615">
+                                                   <color>
+                                                      <Color red="1.0" green="0.5949074029922485" blue="0.02777777798473835" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="0.7799999713897705" green="0.007799999788403511" blue="0.007799999788403511" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill></Label>
                                     <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="305.0">
                                        <children>
-                                          <RadioButton fx:id="Fulltime_Button" mnemonicParsing="false" onAction="#fulltimeClick" prefHeight="17.0" prefWidth="78.0" text="Full time">
+                                          <RadioButton fx:id="Fulltime_Button" mnemonicParsing="false" onAction="#fulltimeClick" prefHeight="17.0" prefWidth="78.0" text="Full time" textFill="WHITE">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="EmployeeType" />
-                                             </toggleGroup></RadioButton>
-                                          <RadioButton fx:id="Parttime_Button" mnemonicParsing="false" onAction="#ParttimeClick" prefHeight="17.0" prefWidth="77.0" text="Part time" toggleGroup="$EmployeeType" />
-                                          <RadioButton fx:id="Management_Button" mnemonicParsing="false" onAction="#managementClick" prefHeight="17.0" prefWidth="100.0" text="Management" toggleGroup="$EmployeeType" />
+                                             </toggleGroup>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
+                                          <RadioButton fx:id="Parttime_Button" mnemonicParsing="false" onAction="#ParttimeClick" prefHeight="17.0" prefWidth="77.0" text="Part time" textFill="WHITE" toggleGroup="$EmployeeType">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
+                                          <RadioButton fx:id="Management_Button" mnemonicParsing="false" onAction="#managementClick" prefHeight="17.0" prefWidth="100.0" text="Management" textFill="WHITE" toggleGroup="$EmployeeType">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
                                        </children>
                                     </HBox>
-                                    <Label alignment="BOTTOM_LEFT" prefHeight="23.0" prefWidth="255.0" text="Management Role" />
+                                    <Label alignment="BOTTOM_LEFT" prefHeight="23.0" prefWidth="255.0" text="Management Role">
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0" startX="0.06190476190476191" startY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.7799999713897705" green="0.007799999788403511" blue="0.007799999788403511" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="0.8815789222717285" green="0.5550682544708252" blue="0.06530214101076126" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Label>
                                     <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="305.0">
                                        <children>
-                                          <RadioButton fx:id="Manager_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="78.0" text="Manager">
+                                          <RadioButton fx:id="Manager_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="78.0" text="Manager" textFill="WHITE">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="Role" />
-                                             </toggleGroup></RadioButton>
-                                          <RadioButton fx:id="DepartmentHead_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="126.0" text="Department Head" toggleGroup="$Role" />
-                                          <RadioButton fx:id="Director_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Director" toggleGroup="$Role" />
+                                             </toggleGroup>
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
+                                          <RadioButton fx:id="DepartmentHead_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="126.0" text="Department Head" textFill="WHITE" toggleGroup="$Role">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
+                                          <RadioButton fx:id="Director_Button" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Director" textFill="WHITE" toggleGroup="$Role">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font></RadioButton>
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
-                              <TextField fx:id="annualSalaryField" layoutX="14.0" layoutY="227.0" prefHeight="25.0" prefWidth="255.0" promptText="Annual Salary" />
-                              <TextField fx:id="hourlyRateField" layoutX="14.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hourly Rate" />
-                              <TextField fx:id="hoursWorkedField" layoutX="145.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hours Worked" />
-                              <HBox layoutX="14.0" layoutY="300.0" prefHeight="31.0" prefWidth="361.0" spacing="10.0">
+                              <TextField fx:id="annualSalaryField" layoutX="14.0" layoutY="227.0" prefHeight="25.0" prefWidth="255.0" promptText="Annual Salary" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6; -fx-text-fill: #C6C6C6;">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></TextField>
+                              <TextField fx:id="hourlyRateField" layoutX="14.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hourly Rate" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6;">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></TextField>
+                              <TextField fx:id="hoursWorkedField" layoutX="145.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hours Worked" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6;">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></TextField>
+                              <HBox layoutX="14.0" layoutY="300.0" prefHeight="31.0" prefWidth="368.0" spacing="7.0">
                                  <children>
-                                    <Button fx:id="add_Button" mnemonicParsing="false" onAction="#addClick" text="Add" />
-                                    <Button fx:id="remove_Button" mnemonicParsing="false" onAction="#removeClick" prefHeight="25.0" prefWidth="59.0" text="Remove" />
-                                    <Button fx:id="calculatePayment_Button" mnemonicParsing="false" onAction="#calculatePaymentClick" text="Calculate Payment" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Print Options">
+                                    <Button fx:id="add_Button" mnemonicParsing="false" onAction="#addClick" style="-fx-background-color: linear-gradient(to right top, #004e78, #006894, #0083af, #009fc8, #04bce1);" text="Add" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
+                                    <Button fx:id="remove_Button" mnemonicParsing="false" onAction="#removeClick" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: linear-gradient(to right top, #4a0000, #650006, #810008, #9e0006, #bb0000);" text="Remove" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
+                                    <Button fx:id="calculatePayment_Button" mnemonicParsing="false" onAction="#calculatePaymentClick" style="-fx-background-color: linear-gradient(to right top, #052900, #033905, #034906, #055a04, #0a6b00);" text="Calculate Payment" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
+                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: linear-gradient(to right, #250020, #380433, #4d0448, #63025e, #7a0075);" text="Print Options" textFill="WHITE">
                                       <items>
                                         <MenuItem fx:id="print_Button" mnemonicParsing="false" onAction="#printClick" text="Print" />
                                         <MenuItem fx:id="printByDate_Button" mnemonicParsing="false" onAction="#printByDateClick" text="Print by Date Hired" />
                                         <MenuItem fx:id="printByDepartment_Button" mnemonicParsing="false" onAction="#printByDepartmentClick" text="Print by Department" />
                                       </items>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
                                     </MenuButton>
                                  </children>
                               </HBox>
-                              <Button fx:id="setHours_Button" layoutX="285.0" layoutY="259.0" mnemonicParsing="false" onAction="#setHoursClick" prefHeight="25.0" prefWidth="85.0" text="Set Hours" />
+                              <Button fx:id="setHours_Button" layoutX="285.0" layoutY="259.0" mnemonicParsing="false" onAction="#setHoursClick" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: linear-gradient(to right, #4e4700, #6c6000, #8d7b00, #b19600, #d6b100);" text="Set Hours" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Button>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
                 <Tab text="Import/Export">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #001729;">
                            <children>
-                              <HBox layoutX="30.0" layoutY="39.0" prefHeight="26.0" prefWidth="270.0">
+                              <HBox layoutX="30.0" layoutY="39.0" prefHeight="26.0" prefWidth="313.0" spacing="10.0">
                                  <children>
-                                    <MenuButton mnemonicParsing="false" text="File">
+                                    <MenuButton mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #023362, #00337b, #002f91, #1625a4, #4600b1);" text="File" textFill="WHITE">
                                       <items>
                                         <MenuItem mnemonicParsing="false" onAction="#importClick" text="Import " />
                                         <MenuItem mnemonicParsing="false" onAction="#exportClick" text="Export" />
                                       </items>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
                                     </MenuButton>
-                                    <MenuButton mnemonicParsing="false" text="Print Options">
+                                    <MenuButton mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #4600b1, #740095, #89007c, #920065, #940154);" text="Print Options" textFill="WHITE">
                                       <items>
                                         <MenuItem mnemonicParsing="false" onAction="#printClick" text="Print" />
                                         <MenuItem mnemonicParsing="false" onAction="#printByDateClick" text="Print By Date Hired" />
                                           <MenuItem mnemonicParsing="false" onAction="#printByDepartmentClick" text="Print By Department" />
                                       </items>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
                                     </MenuButton>
-                                    <Button mnemonicParsing="false" onAction="#calculatePaymentClick" text="Calculate Payment" />
+                                    <Button mnemonicParsing="false" onAction="#calculatePaymentClick" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: linear-gradient(to right, #940154, #980044, #9a0033, #980022, #94010e);" text="Calculate Payment" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
                                  </children>
                               </HBox>
                            </children></AnchorPane>
@@ -101,7 +233,7 @@
                 </Tab>
               </tabs>
             </TabPane>
-            <TextArea fx:id="textOutput_Screen" editable="false" prefHeight="373.0" prefWidth="477.0" />
+            <TextArea fx:id="textOutput_Screen" editable="false" prefHeight="373.0" prefWidth="362.0" promptText="Output Area" />
          </children>
       </HBox>
    </children>
