@@ -161,10 +161,19 @@ public class Company {
         }
     }
 
+    public String[] employeeList() {
+
+        String[] employees = new String[numEmployee];
+        for(int i = 0; i < numEmployee; i++) {
+            employees[i] = emplist[i].toString();
+        }
+        return employees;
+    }
+
     /**
      Sort the employee array from lexicographically based on the employee department name (CS, ECE, IT).
      */
-    private void sortEmployeeDepartment(){
+    public void sortEmployeeDepartment(){
         for (int i = 1; i < emplist.length; i++) {
             Employee[] tempList = new Employee[1];
             tempList[0] = emplist[i];
@@ -195,7 +204,7 @@ public class Company {
     /**
      Sort the employee array based on the starting date of each employee from oldest to most recent.
      */
-    private void sortEmployeeHiredDateAscending(){
+    public void sortEmployeeHiredDateAscending(){
         for (int i = 1; i < emplist.length; i++) {
             Employee[] tempList = new Employee[1];
             tempList[0] = emplist[i];
