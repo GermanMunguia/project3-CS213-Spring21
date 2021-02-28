@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
-import javax.swing.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.time.format.DateTimeFormatter;
 import java.util.StringTokenizer;
 
@@ -76,7 +76,7 @@ public class Controller {
     Company company = new Company();
 
     public void addClick(ActionEvent actionEvent) {
-        if(employeeIsValid()){
+        if(employeeIsValid("add")){
             String department = assignDepartment();
             if (Fulltime_Button.isSelected()) {
                 if(!annualSalaryField.getText().equals("")) {
@@ -169,7 +169,7 @@ public class Controller {
     }
 
     public void removeClick(ActionEvent actionEvent) {
-        if(employeeIsValid()){
+        if(employeeIsValid("remove")){
             String department = assignDepartment();
             Employee employee = new Employee(fullNameField.getText(), department,
                     (dateHiredField.getValue()).format(formatter));
@@ -197,7 +197,7 @@ public class Controller {
     }
 
     public void setHoursClick(ActionEvent actionEvent) {
-        if(employeeIsValid()){
+        if(employeeIsValid("setHours")){
             String department = assignDepartment();
             if(Parttime_Button.isSelected()){
                 String workHours = "";
@@ -284,7 +284,7 @@ public class Controller {
         return "";
     }
 
-    private Boolean employeeIsValid(){
+    private Boolean employeeIsValid(String command){
         if(fullNameField.getText().equals("")){
             textOutput_Screen.appendText("Enter the first and last name!\n");
             return false;
@@ -298,15 +298,15 @@ public class Controller {
             textOutput_Screen.appendText((dateHiredField.getValue()).format(formatter) + " is not a valid date!\n");
             return false;
         }
-        else if(!(CS_Button.isSelected() || ECE_Button.isSelected() || IT_Button.isSelected())){
+        else if(!(CS_Button.isSelected() || ECE_Button.isSelected() || IT_Button.isSelected()) && command.equals("add")){
             textOutput_Screen.appendText("Select a department!\n");
             return false;
         }
-        else if(!(Fulltime_Button.isSelected() || Parttime_Button.isSelected() || Management_Button.isSelected())){
+        else if(!(Fulltime_Button.isSelected() || Parttime_Button.isSelected() || Management_Button.isSelected()) && command.equals("add")){
             textOutput_Screen.appendText("Select employee type!\n");
             return false;
         }
-        else if(Management_Button.isSelected() && !(Manager_Button.isSelected() || DepartmentHead_Button.isSelected() || Director_Button.isSelected())){
+        else if(Management_Button.isSelected() && !(Manager_Button.isSelected() || DepartmentHead_Button.isSelected() || Director_Button.isSelected()) && command.equals("add")){
             textOutput_Screen.appendText("Select Management role!\n");
             return false;
         }
