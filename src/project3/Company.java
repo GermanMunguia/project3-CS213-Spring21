@@ -152,17 +152,11 @@ public class Company {
     } //process payments for all employees
 
     /**
-     Print the earning statement for each employee from the employee array.
-     This method calls the toString() method for each employee.
+     Returns a new array with the toString info of each employee in the database to be exported.
+     @return employees the new array with info of all employees.
      */
-    public void print() {
-        for(int i = 0; i < numEmployee; i++){
-            System.out.println(emplist[i].toString());
-        }
-    }
 
-    public String[] employeeList() {
-
+    public String[] exportDatabase() {
         String[] employees = new String[numEmployee];
         for(int i = 0; i < numEmployee; i++) {
             employees[i] = emplist[i].toString();
@@ -188,20 +182,6 @@ public class Company {
     }
 
     /**
-     Print the earning statement for each employee from the employee array lexicographically based on the employee department name.
-     This method calls the sortEmployeeDepartment() helper method to assist in sorting the employee array.
-     After sorting is complete the method calls the print() method to print the employee array.
-     */
-    public void printByDepartment() {
-        if(numEmployee > 1) {
-            //first sort the employees by department
-            sortEmployeeDepartment();
-        }
-        //call the print statement
-        print();
-    }
-
-    /**
      Sort the employee array based on the starting date of each employee from oldest to most recent.
      */
     public void sortEmployeeHiredDateAscending(){
@@ -216,21 +196,6 @@ public class Company {
             }
             emplist[j + 1] = tempList[0];
         }
-    }
-
-    /**
-     Print the earning statement for each employee from the employee array based on the starting date of each employee
-     from oldest to most recent.
-     This method calls the sortEmployeeHiredDateAscending() helper method to assist in sorting the employee array.
-     After sorting is complete the method calls the print() method to print the employee array.
-     */
-    public void printByDate() {
-        if (numEmployee > 1) {
-            //call the sorting method
-            sortEmployeeHiredDateAscending();
-        }
-        //call the print method once sorted.
-        print();
     }
 
     /**

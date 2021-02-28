@@ -1,9 +1,13 @@
 package project3;
 
+/**
+
+ @author German Munguia, Sukhjit Singh
+ */
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 
 import java.io.BufferedReader;
@@ -67,9 +71,6 @@ public class Controller {
     private MenuItem printByDate_Button;
     @FXML
     private MenuItem printByDepartment_Button;
-
-    @FXML
-    private HBox Import_Export;
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
@@ -340,7 +341,7 @@ public class Controller {
         }
 
         textOutput_Screen.appendText(printMsg);
-        String[] employees = company.employeeList();
+        String[] employees = company.exportDatabase();
         for(int i = 0; i < employees.length; i++) {
             textOutput_Screen.appendText(employees[i] + "\n");
         }
@@ -425,7 +426,7 @@ public class Controller {
         try{
             //use printwriter to write the toString values of each employee.
             PrintWriter pw = new PrintWriter(selectedFile);
-            String[] employees = company.employeeList();
+            String[] employees = company.exportDatabase();
             for(int i = 0; i < employees.length; i++) {
                 pw.println(employees[i].toString());
             }
