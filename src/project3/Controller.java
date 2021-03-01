@@ -2,7 +2,10 @@ package project3;
 
 /**
  The Controller class defines the methods associated with the View.fxml GUI file.
- The methods define the actions performed the event of clicking a button in the GUI application.
+ The public methods define the actions performed when buttons are clicked in the GUI application.
+ The private methods are helper methods to aid in the functionality of the button methods.
+ An instance of the company class is created and the methods interact with this object to add, remove, or manipulate
+ employee data given by the user in the GUI application.
  @author German Munguia, Sukhjit Singh
  */
 
@@ -75,7 +78,7 @@ public class Controller {
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
-
+    //Create an instance of the company class.
     Company company = new Company();
 
     /**
@@ -94,15 +97,18 @@ public class Controller {
             if (Fulltime_Button.isSelected()) {
                 if(!annualSalaryField.getText().equals("")) {
                     try {
+                        //Check if given salary is negative
                         if (Double.parseDouble(annualSalaryField.getText()) < 0) {
                             textOutput_Screen.appendText("Salary cannot be negative.\n");
                         }
                         else{
+                            //Create instance of fulltime as pass as a parameter into the add() method in company class.
                             Fulltime fulltime = new Fulltime(fullNameField.getText(), department,
                                     (dateHiredField.getValue()).format(formatter), annualSalaryField.getText());
                             if(company.add(fulltime)){
                                 textOutput_Screen.appendText("Employee added.\n");
                             } else {
+                                //Employee already exists
                                 textOutput_Screen.appendText("Employee is already in the list.\n");
                             }
                         }
@@ -119,6 +125,7 @@ public class Controller {
             else if(Parttime_Button.isSelected()){
 
                 String workHours = "";
+                //Depending on the data field value assign a specific value to the workHours String.
                 if(hoursWorkedField.getText().equals("")){
                     workHours = "0";
                 }
@@ -128,15 +135,18 @@ public class Controller {
 
                 if(!hourlyRateField.getText().equals("") && !workHours.equals("")) {
                     try {
+                        //Check if the hourly rate is negative
                         if (Double.parseDouble(hourlyRateField.getText()) < 0) {
                             textOutput_Screen.appendText("Hourly Rate cannot be negative.\n");
                         }
                         else{
+                            //Create an instance of parttime and pass as parameter to the add() method of company class
                             Parttime parttime = new Parttime(fullNameField.getText(), department,
                                     (dateHiredField.getValue()).format(formatter), hourlyRateField.getText(), workHours);
                             if(company.add(parttime)){
                                 textOutput_Screen.appendText("Employee added.\n");
                             } else {
+                                //Employee already exists
                                 textOutput_Screen.appendText("Employee is already in the list.\n");
                             }
                         }
@@ -153,15 +163,18 @@ public class Controller {
             else if(Management_Button.isSelected()){
                 if(!annualSalaryField.getText().equals("")) {
                     try {
+                        //Check if given salary is negative
                         if (Double.parseDouble(annualSalaryField.getText()) < 0) {
                             textOutput_Screen.appendText("Salary cannot be negative.\n");
                         }
                         else{
+                            //Create an instance of management and pass as a parameter in add() method of company class
                             Management management = new Management(fullNameField.getText(), department,
                                     (dateHiredField.getValue()).format(formatter), annualSalaryField.getText(), assignManagementRole());
                             if(company.add(management)){
                                 textOutput_Screen.appendText("Employee added.\n");
                             } else {
+                                //Check if the employee already exists
                                 textOutput_Screen.appendText("Employee is already in the list.\n");
                             }
                         }
@@ -177,6 +190,7 @@ public class Controller {
             }
         }
         else{
+            //If the data field values are invalid.
             textOutput_Screen.appendText("Try again\n");
         }
     }
@@ -195,16 +209,20 @@ public class Controller {
         if(employeeIsValid("remove")){
             //String containing the selected employee department.
             String department = assignDepartment();
+
+            //Create a generic employee object and pass as a parameter in the remove() method of the company class
             Employee employee = new Employee(fullNameField.getText(), department,
                     (dateHiredField.getValue()).format(formatter));
             if(company.remove(employee)){
                 textOutput_Screen.appendText("Employee removed\n");
             }
             else{
+                //Check if the employee already exists
                 textOutput_Screen.appendText("Employee does not exist.\n");
             }
         }
         else{
+            //If the data field values are invalid.
             textOutput_Screen.appendText("Try again\n");
         }
     }
@@ -244,6 +262,8 @@ public class Controller {
 
             if(Parttime_Button.isSelected()){
                 String workHours = "";
+
+                //Check if the data field is populated
                 if(hoursWorkedField.getText().equals("")){
                     textOutput_Screen.appendText("Enter the amount of hours!\n");
                 }
@@ -251,10 +271,12 @@ public class Controller {
                     workHours = hoursWorkedField.getText();
                 }
 
+                //Create generic instance of parttime and pass as a parameter in the setHours() method of company class
                 if(company.setHours(new Parttime(fullNameField.getText(), department, (dateHiredField.getValue()).format(formatter), "0", workHours))) {
                     textOutput_Screen.appendText("Working hours set.\n");
                 }
                 else{
+                    //Check if the employee already exists
                     textOutput_Screen.appendText("Employee does not exist.\n");
                 }
             }
@@ -428,37 +450,64 @@ public class Controller {
         }
     }
 
-
+    /**
+     Prints the employee database by calling the company.exportDatabase() method.
+     @param printMsg string appended to the print statement and is associated with the type of print action.
+     */
     public void print(String printMsg) {
+        //Check if the database is empty
         if(company.getNumEmployee() == 0) {
             textOutput_Screen.appendText("Employee database is empty.\n");
             return;
         }
 
+        //Print the given statement
         textOutput_Screen.appendText(printMsg);
+        //Print the employee information for each employee in the database.
         String[] employees = company.exportDatabase();
         for(int i = 0; i < employees.length; i++) {
             textOutput_Screen.appendText(employees[i] + "\n");
         }
     }
 
+    /**
+     Calls the print() method to print the employee database as is.
+     Generates a string to be appended to the print statement.
+     @param actionEvent associated with the clicking of the print button
+     */
     public void printClick(ActionEvent actionEvent) {
         String printMsg = "--Printing earning statements for all employees--\n";
         print(printMsg);
     }
 
+    /**
+     Calls the print() method to print the employee database sorted by dated hired.
+     Generates a string to be appended to the print statement.
+     @param actionEvent associated with the clicking of the print by date button
+     */
     public void printByDateClick(ActionEvent actionEvent) {
         String printMsg = "--Printing earning statements by date hired--\n";
+        //Sort the database by date hired.
         company.sortEmployeeHiredDateAscending();
         print(printMsg);
     }
 
+    /**
+     Calls the print() method to print the employee database sorted by department name.
+     Generates a string to be appended to the print statement.
+     @param actionEvent associated with the clicking of the print by department button
+     */
     public void printByDepartmentClick(ActionEvent actionEvent) {
         String printMsg = "--Printing earning statements by department--\n";
+        //Sort by department name
         company.sortEmployeeDepartment();
         print(printMsg);
     }
 
+    /**
+     Method which opens a file chooser to allow user to import an existing employee database and perform actions on it.
+     @param actionEvent associated with the clicking of the print by date button
+     */
     public void importClick(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Import File");
@@ -511,6 +560,10 @@ public class Controller {
         }
     }
 
+    /**
+     Method which opens a file chooser to allow user to export the current employee database an store it for later use.
+     @param actionEvent associated with the clicking of the print by date button
+     */
     public void exportClick(ActionEvent actionEvent) {
 
         //allow for the location of the exported file be chosen.

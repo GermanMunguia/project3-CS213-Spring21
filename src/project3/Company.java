@@ -152,12 +152,12 @@ public class Company {
     } //process payments for all employees
 
     /**
-     Returns a new array with the toString info of each employee in the database to be exported.
+     Returns a new array with the toString() info of each employee in the database to be exported.
      @return employees the new array with info of all employees.
      */
-
     public String[] exportDatabase() {
         String[] employees = new String[numEmployee];
+
         for(int i = 0; i < numEmployee; i++) {
             employees[i] = emplist[i].toString();
         }
