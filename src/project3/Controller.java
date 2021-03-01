@@ -1,7 +1,8 @@
 package project3;
 
 /**
-
+ The Controller class defines the methods associated with the View.fxml GUI file.
+ The methods define the actions performed the event of clicking a button in the GUI application.
  @author German Munguia, Sukhjit Singh
  */
 
@@ -74,10 +75,21 @@ public class Controller {
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
+
     Company company = new Company();
 
+    /**
+     Checks and validates the data input and selection fields in the GUI application and based on that, adds an employee
+     to the employee array.
+     Calls the employeeIsValid() method to check if the data input fields are populated and contain valid data.
+     Based on the employee type selected, an associated employee class (Fulltime, Parttime, or Management) instance is
+     created with the data field values and added to the employee array.
+     If employee is successfully added a success message is displayed, otherwise a Try Again message is displayed.
+     @param actionEvent associated with the clicking of the add button
+     */
     public void addClick(ActionEvent actionEvent) {
         if(employeeIsValid("add")){
+            //String containing the selected employee department.
             String department = assignDepartment();
             if (Fulltime_Button.isSelected()) {
                 if(!annualSalaryField.getText().equals("")) {
@@ -169,8 +181,19 @@ public class Controller {
         }
     }
 
+    /**
+     Checks and validates the data input and selection fields in the GUI application and based on that, removes an
+     employee from the employee array.
+     Calls the employeeIsValid() method to check if the name, date, and department input fields are populated and
+     contain valid data.
+     A generic employee class instance is created with the data field values and passed as a parameter in the remove()
+     method of the company class.
+     If employee is successfully removed a success message is displayed, otherwise a Try Again message is displayed.
+     @param actionEvent associated with the clicking of the remove button
+     */
     public void removeClick(ActionEvent actionEvent) {
         if(employeeIsValid("remove")){
+            //String containing the selected employee department.
             String department = assignDepartment();
             Employee employee = new Employee(fullNameField.getText(), department,
                     (dateHiredField.getValue()).format(formatter));
@@ -180,13 +203,19 @@ public class Controller {
             else{
                 textOutput_Screen.appendText("Employee does not exist.\n");
             }
-
         }
         else{
             textOutput_Screen.appendText("Try again\n");
         }
     }
 
+    /**
+     Calls the processPayments() method in the company class to calculate the single payment period salaries for each
+     employee.
+     If there are no employees in the employee array, a message saying that the database is empty is displayed.
+     Otherwise a success message is displayed.
+     @param actionEvent associated with the clicking of the calculate payment button
+     */
     public void calculatePaymentClick(ActionEvent actionEvent){
         if(company.getNumEmployee() == 0){
             textOutput_Screen.appendText("Employee database is empty.\n");
@@ -197,9 +226,22 @@ public class Controller {
         }
     }
 
+    /**
+     Checks and validates the data input and selection fields in the GUI application and based on that, sets the
+     hours of the given employee in the employee array if they are found.
+     Calls the employeeIsValid() method to check if the name, date, and department input fields are populated and
+     contain valid data.
+     A generic Parttime employee instance is created with the data field values and passed as a parameter in the
+     setHours() method of the company class.
+     If employee is successfully found and their working hours are set, a success message is displayed, otherwise a
+     Try Again message is displayed.
+     @param actionEvent associated with the clicking of the set hours button
+     */
     public void setHoursClick(ActionEvent actionEvent) {
         if(employeeIsValid("setHours")){
+            //String containing the selected employee department.
             String department = assignDepartment();
+
             if(Parttime_Button.isSelected()){
                 String workHours = "";
                 if(hoursWorkedField.getText().equals("")){
@@ -215,23 +257,35 @@ public class Controller {
                 else{
                     textOutput_Screen.appendText("Employee does not exist.\n");
                 }
-
             }
             else{
+                //If any other employee type is selected
                 textOutput_Screen.appendText("Invalid employee type\n");
             }
-
         }
         else{
+            //If the data field values are invalid.
             textOutput_Screen.appendText("Try again\n");
         }
     }
 
+    /**
+     If the fulltime employee radio button is selected, the other employee type radio buttons become disabled.
+     Calls the disableManagementRoles() method to disable the management role radio buttons.
+     Calls the disablePartime() method to disable the parttime employee data fields.
+     @param actionEvent associated with the clicking of the fulltime button
+     */
     public void fulltimeClick(ActionEvent actionEvent) {
         disableManagementRoles();
         disablePartime();
     }
 
+    /**
+     If the management employee radio button is selected, the other employee type radio buttons become disabled and
+     the associated management subtype radio buttons are enabled.
+     Calls the disablePartime() method to disable the parttime employee data fields.
+     @param actionEvent associated with the clicking of the management button
+     */
     public void managementClick(ActionEvent actionEvent) {
         Manager_Button.setDisable(false);
         DepartmentHead_Button.setDisable(false);
@@ -239,6 +293,12 @@ public class Controller {
         disablePartime();
     }
 
+    /**
+     If the parttime employee radio button is selected, the other employee type radio buttons and data fields become
+     disabled while the parttime salary and hours worked fields become enabled.
+     Calls the disableManagementRoles() method to disable the management role radio buttons/
+     @param actionEvent associated with the clicking of the parttime button
+     */
     public void ParttimeClick(ActionEvent actionEvent) {
         disableManagementRoles();
         hourlyRateField.setDisable(false);
@@ -246,19 +306,29 @@ public class Controller {
         hoursWorkedField.setDisable(false);
     }
 
+    /**
+     Method to disable the management role radio buttons
+     */
     public void disableManagementRoles(){
         Manager_Button.setDisable(true);
         DepartmentHead_Button.setDisable(true);
         Director_Button.setDisable(true);
     }
 
+    /**
+     Method to disable the parttime employee data fields and enable the fulltime employee data fields.
+     */
     public void disablePartime() {
         hourlyRateField.setDisable(true);
         annualSalaryField.setDisable(false);
         hoursWorkedField.setDisable(true);
-
     }
 
+    /**
+     Helper method which returns a string representing the department an employee works in based on the department
+     radio button selection.
+     @return String value representing the employee's selected department
+     */
     private String assignDepartment(){
         if(CS_Button.isSelected()){
             return "CS";
@@ -272,6 +342,11 @@ public class Controller {
         return "";
     }
 
+    /**
+     Helper method which returns a string representing the management role of a management employee based on the
+     radio button selection.
+     @return String value representing the employee's selected management role
+     */
     private String assignManagementRole(){
         if(Manager_Button.isSelected()){
             return "1";
@@ -285,54 +360,74 @@ public class Controller {
         return "";
     }
 
+    /**
+     Helper method which returns a Boolean representing the validity of the data given in the GUI input fields.
+     @param command associated with the type of action button a user has selected (Add, remove, set hours)
+     @return Boolean which returns true if employee data fields are valid, false otherwise
+     */
     private Boolean employeeIsValid(String command){
+        //Check if the name field is populated
         if(fullNameField.getText().equals("")){
             textOutput_Screen.appendText("Enter the first and last name!\n");
             return false;
         }
+        //Check if a date is selected
         else if(dateHiredField.getValue() == null) {
             textOutput_Screen.appendText("Select the date the employee was hired!\n");
             return false;
         }
-        //If the date is out of bounds
+        //Check if the selected date is out of bounds
         else if(!(new Date((dateHiredField.getValue()).format(formatter)).isValid())){
             textOutput_Screen.appendText((dateHiredField.getValue()).format(formatter) + " is not a valid date!\n");
             return false;
         }
+        //Check if the department radio buttons are selected (Only when adding an employee)
         else if(!(CS_Button.isSelected() || ECE_Button.isSelected() || IT_Button.isSelected()) && command.equals("add")){
             textOutput_Screen.appendText("Select a department!\n");
             return false;
         }
+        //Check if the employee type radio buttons are selected (Only when adding an employee)
         else if(!(Fulltime_Button.isSelected() || Parttime_Button.isSelected() || Management_Button.isSelected()) && command.equals("add")){
             textOutput_Screen.appendText("Select employee type!\n");
             return false;
         }
+        //Check is the management role radio buttons are selected if management is selected (Only when adding an employee)
         else if(Management_Button.isSelected() && !(Manager_Button.isSelected() || DepartmentHead_Button.isSelected() || Director_Button.isSelected()) && command.equals("add")){
             textOutput_Screen.appendText("Select Management role!\n");
             return false;
         }
+        //Everything is valid
         else{
             return true;
         }
     }
 
+    /**
+     Helper method which returns a Boolean representing the validity of the parttime employee working hours given in
+     the GUI input fields.
+     @return Boolean which returns true if parttime employee working hours are valid, false otherwise
+     */
     private Boolean isValidWorkingHours(){
         try{
+            //Check if working hours are negative
             if (Integer.parseInt(hoursWorkedField.getText()) < 0){
                 textOutput_Screen.appendText("Working hours cannot be negative.\n");
                 return false;
             }
+            //Check if working hours exceeds maximum of 100 hours
             else if (Integer.parseInt(hoursWorkedField.getText()) > Constants.MAXIMUM_HOURS){
                 textOutput_Screen.appendText("Invalid Hours: over 100.\n");
                 return false;
             }
             return true;
         }
+        //Exception if the input is not a numerical value
         catch (NumberFormatException ex){
             textOutput_Screen.appendText("Hours worked must be a numerical value!\n");
             return false;
         }
     }
+
 
     public void print(String printMsg) {
         if(company.getNumEmployee() == 0) {

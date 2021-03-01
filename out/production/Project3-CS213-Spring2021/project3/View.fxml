@@ -15,7 +15,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="386.0" style="-fx-background-color: #001729;">
                            <children>
-                              <TextField fx:id="fullNameField" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="243.0" promptText="Full Name" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6;">
+                              <TextField fx:id="fullNameField" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="243.0" promptText="Full Name" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6; -fx-text-fill: #C6C6C6;">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></TextField>
@@ -155,11 +155,11 @@
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></TextField>
-                              <TextField fx:id="hourlyRateField" layoutX="14.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hourly Rate" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6;">
+                              <TextField fx:id="hourlyRateField" layoutX="14.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hourly Rate" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6; -fx-text-fill: #C6C6C6;">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></TextField>
-                              <TextField fx:id="hoursWorkedField" layoutX="145.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hours Worked" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6;">
+                              <TextField fx:id="hoursWorkedField" layoutX="145.0" layoutY="259.0" prefHeight="25.0" prefWidth="125.0" promptText="Hours Worked" style="-fx-background-color: linear-gradient(to left, #001b30, #002541, #003054, #003a67, #00457a); -fx-prompt-text-fill: #C6C6C6; -fx-text-fill: #C6C6C6;">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></TextField>
