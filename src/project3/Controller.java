@@ -40,41 +40,19 @@ public class Controller {
 
     //Declare the radio buttons
     @FXML
-    private RadioButton CS_Button;
+    private RadioButton CS_Button, ECE_Button, IT_Button;
     @FXML
-    private RadioButton ECE_Button;
+    private RadioButton Fulltime_Button, Parttime_Button, Management_Button;
     @FXML
-    private RadioButton IT_Button;
-    @FXML
-    private RadioButton Fulltime_Button;
-    @FXML
-    private RadioButton Parttime_Button;
-    @FXML
-    private RadioButton Management_Button;
-    @FXML
-    private RadioButton Manager_Button;
-    @FXML
-    private RadioButton DepartmentHead_Button;
-    @FXML
-    private RadioButton Director_Button;
+    private RadioButton Manager_Button, DepartmentHead_Button, Director_Button;
 
     //Declare Regular Buttons
     @FXML
-    private Button add_Button;
-    @FXML
-    private Button remove_Button;
-    @FXML
-    private Button calculatePayment_Button;
-    @FXML
-    private Button setHours_Button;
+    private Button add_Button, remove_Button, calculatePayment_Button, setHours_Button;
 
     //Declare Menu Button Items
     @FXML
-    private MenuItem print_Button;
-    @FXML
-    private MenuItem printByDate_Button;
-    @FXML
-    private MenuItem printByDepartment_Button;
+    private MenuItem print_Button, printByDate_Button, printByDepartment_Button;
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
@@ -90,6 +68,7 @@ public class Controller {
      If employee is successfully added a success message is displayed, otherwise a Try Again message is displayed.
      @param actionEvent associated with the clicking of the add button
      */
+    @FXML
     public void addClick(ActionEvent actionEvent) {
         if(employeeIsValid("add")){
             //String containing the selected employee department.
@@ -205,6 +184,7 @@ public class Controller {
      If employee is successfully removed a success message is displayed, otherwise a Try Again message is displayed.
      @param actionEvent associated with the clicking of the remove button
      */
+    @FXML
     public void removeClick(ActionEvent actionEvent) {
         if(employeeIsValid("remove")){
             //String containing the selected employee department.
@@ -234,6 +214,7 @@ public class Controller {
      Otherwise a success message is displayed.
      @param actionEvent associated with the clicking of the calculate payment button
      */
+    @FXML
     public void calculatePaymentClick(ActionEvent actionEvent){
         if(company.getNumEmployee() == 0){
             textOutput_Screen.appendText("Employee database is empty.\n");
@@ -255,6 +236,7 @@ public class Controller {
      Try Again message is displayed.
      @param actionEvent associated with the clicking of the set hours button
      */
+    @FXML
     public void setHoursClick(ActionEvent actionEvent) {
         if(employeeIsValid("setHours")){
             //String containing the selected employee department.
@@ -297,6 +279,7 @@ public class Controller {
      Calls the disablePartime() method to disable the parttime employee data fields.
      @param actionEvent associated with the clicking of the fulltime button
      */
+    @FXML
     public void fulltimeClick(ActionEvent actionEvent) {
         disableManagementRoles();
         disablePartime();
@@ -308,6 +291,7 @@ public class Controller {
      Calls the disablePartime() method to disable the parttime employee data fields.
      @param actionEvent associated with the clicking of the management button
      */
+    @FXML
     public void managementClick(ActionEvent actionEvent) {
         Manager_Button.setDisable(false);
         DepartmentHead_Button.setDisable(false);
@@ -321,6 +305,7 @@ public class Controller {
      Calls the disableManagementRoles() method to disable the management role radio buttons/
      @param actionEvent associated with the clicking of the parttime button
      */
+    @FXML
     public void ParttimeClick(ActionEvent actionEvent) {
         disableManagementRoles();
         hourlyRateField.setDisable(false);
@@ -331,6 +316,7 @@ public class Controller {
     /**
      Method to disable the management role radio buttons
      */
+    @FXML
     public void disableManagementRoles(){
         Manager_Button.setDisable(true);
         DepartmentHead_Button.setDisable(true);
@@ -340,6 +326,7 @@ public class Controller {
     /**
      Method to disable the parttime employee data fields and enable the fulltime employee data fields.
      */
+    @FXML
     public void disablePartime() {
         hourlyRateField.setDisable(true);
         annualSalaryField.setDisable(false);
@@ -351,6 +338,7 @@ public class Controller {
      radio button selection.
      @return String value representing the employee's selected department
      */
+    @FXML
     private String assignDepartment(){
         if(CS_Button.isSelected()){
             return "CS";
@@ -369,6 +357,7 @@ public class Controller {
      radio button selection.
      @return String value representing the employee's selected management role
      */
+    @FXML
     private String assignManagementRole(){
         if(Manager_Button.isSelected()){
             return "1";
@@ -387,6 +376,7 @@ public class Controller {
      @param command associated with the type of action button a user has selected (Add, remove, set hours)
      @return Boolean which returns true if employee data fields are valid, false otherwise
      */
+    @FXML
     private Boolean employeeIsValid(String command){
         //Check if the name field is populated
         if(fullNameField.getText().equals("")){
@@ -429,6 +419,7 @@ public class Controller {
      the GUI input fields.
      @return Boolean which returns true if parttime employee working hours are valid, false otherwise
      */
+    @FXML
     private Boolean isValidWorkingHours(){
         try{
             //Check if working hours are negative
@@ -454,6 +445,7 @@ public class Controller {
      Prints the employee database by calling the company.exportDatabase() method.
      @param printMsg string appended to the print statement and is associated with the type of print action.
      */
+    @FXML
     public void print(String printMsg) {
         //Check if the database is empty
         if(company.getNumEmployee() == 0) {
@@ -475,6 +467,7 @@ public class Controller {
      Generates a string to be appended to the print statement.
      @param actionEvent associated with the clicking of the print button
      */
+    @FXML
     public void printClick(ActionEvent actionEvent) {
         String printMsg = "--Printing earning statements for all employees--\n";
         print(printMsg);
@@ -485,6 +478,7 @@ public class Controller {
      Generates a string to be appended to the print statement.
      @param actionEvent associated with the clicking of the print by date button
      */
+    @FXML
     public void printByDateClick(ActionEvent actionEvent) {
         String printMsg = "--Printing earning statements by date hired--\n";
         //Sort the database by date hired.
@@ -497,6 +491,7 @@ public class Controller {
      Generates a string to be appended to the print statement.
      @param actionEvent associated with the clicking of the print by department button
      */
+    @FXML
     public void printByDepartmentClick(ActionEvent actionEvent) {
         String printMsg = "--Printing earning statements by department--\n";
         //Sort by department name
@@ -508,6 +503,7 @@ public class Controller {
      Method which opens a file chooser to allow user to import an existing employee database and perform actions on it.
      @param actionEvent associated with the clicking of the print by date button
      */
+    @FXML
     public void importClick(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Import File");
@@ -564,6 +560,7 @@ public class Controller {
      Method which opens a file chooser to allow user to export the current employee database an store it for later use.
      @param actionEvent associated with the clicking of the print by date button
      */
+    @FXML
     public void exportClick(ActionEvent actionEvent) {
 
         //allow for the location of the exported file be chosen.
