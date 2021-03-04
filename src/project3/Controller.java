@@ -46,14 +46,6 @@ public class Controller {
     @FXML
     private RadioButton Manager_Button, DepartmentHead_Button, Director_Button;
 
-    //Declare Regular Buttons
-    @FXML
-    private Button add_Button, remove_Button, calculatePayment_Button, setHours_Button;
-
-    //Declare Menu Button Items
-    @FXML
-    private MenuItem print_Button, printByDate_Button, printByDepartment_Button;
-
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     //Create an instance of the company class.
