@@ -156,6 +156,11 @@ public class Company {
      @return employees the new array with info of all employees.
      */
     public String[] exportDatabase() {
+
+        if(numEmployee == 0) {
+            return null;
+        }
+
         String[] employees = new String[numEmployee];
 
         for(int i = 0; i < numEmployee; i++) {

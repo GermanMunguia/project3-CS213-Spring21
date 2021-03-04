@@ -562,6 +562,13 @@ public class Controller {
     @FXML
     public void exportClick(ActionEvent actionEvent) {
 
+        //first make get the export data, if it is empty then exit before asking for a file.
+        String[] employees = company.exportDatabase();
+        if(employees == null) {
+            textOutput_Screen.appendText("Empty database cannot be exported.\n");
+            return;
+        }
+
         //allow for the location of the exported file be chosen.
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export File");
@@ -570,7 +577,7 @@ public class Controller {
         try{
             //use printwriter to write the toString values of each employee.
             PrintWriter pw = new PrintWriter(selectedFile);
-            String[] employees = company.exportDatabase();
+
             for(int i = 0; i < employees.length; i++) {
                 pw.println(employees[i].toString());
             }
