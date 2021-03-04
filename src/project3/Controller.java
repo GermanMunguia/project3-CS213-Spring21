@@ -135,7 +135,7 @@ public class Controller {
                         textOutput_Screen.appendText("Hourly Rate must be a numerical value\n");
                     }
                 }
-                else{
+                else if(hourlyRateField.getText().equals("") && !workHours.equals("")){
                     textOutput_Screen.appendText("Enter a valid salary\n");
                 }
             }
@@ -251,15 +251,14 @@ public class Controller {
                 }
                 else if(isValidWorkingHours()){
                     workHours = hoursWorkedField.getText();
-                }
 
-                //Create generic instance of parttime and pass as a parameter in the setHours() method of company class
-                if(company.setHours(new Parttime(fullNameField.getText(), department, (dateHiredField.getValue()).format(formatter), "0", workHours))) {
-                    textOutput_Screen.appendText("Working hours set.\n");
-                }
-                else{
-                    //Check if the employee already exists
-                    textOutput_Screen.appendText("Employee does not exist.\n");
+                    //Create generic instance of parttime and pass as a parameter in the setHours() method of company class
+                    if (company.setHours(new Parttime(fullNameField.getText(), department, (dateHiredField.getValue()).format(formatter), "0", workHours))) {
+                        textOutput_Screen.appendText("Working hours set.\n");
+                    } else {
+                        //Check if the employee already exists
+                        textOutput_Screen.appendText("Employee does not exist.\n");
+                    }
                 }
             }
             else{
